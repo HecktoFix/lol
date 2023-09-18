@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Namen eingeben</title>
+</head>
+<body>
+    <h1>Namen eingeben</h1>
+    <input type="text" id="nameInput" placeholder="Geben Sie einen Namen ein">
+    <button onclick="speichern()">Speichern</button>
+    <a href="namen.html">Alle Namen anzeigen</a>
+
+    <script>
+        function speichern() {
+            const name = document.getElementById("nameInput").value;
+            if (name.trim() !== "") {
+                // Namen in den lokalen Speicher speichern
+                if (localStorage.getItem("namen")) {
+                    const namen = JSON.parse(localStorage.getItem("namen"));
+                    namen.push(name);
+                    localStorage.setItem("namen", JSON.stringify(namen));
+                } else {
+                    localStorage.setItem("namen", JSON.stringify([name]));
+                }
+                // Zurücksetzen des Eingabefelds
+                document.getElementById("nameInput").value = "";
+            }
+        }
+    </script>
+</body>
+</html>

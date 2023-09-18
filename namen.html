@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alle Namen anzeigen</title>
+</head>
+<body>
+    <h1>Alle Namen anzeigen</h1>
+    <ul id="namenListe"></ul>
+    <a href="index.html">Zurück zur Eingabe</a>
+
+    <script>
+        // Alle bisher gespeicherten Namen aus dem lokalen Speicher abrufen und anzeigen
+        const namenListe = document.getElementById("namenListe");
+        const gespeicherteNamen = localStorage.getItem("namen");
+
+        if (gespeicherteNamen) {
+            const namen = JSON.parse(gespeicherteNamen);
+            namen.forEach(function(name) {
+                const listItem = document.createElement("li");
+                listItem.textContent = name;
+                namenListe.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
